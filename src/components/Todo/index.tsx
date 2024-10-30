@@ -1,62 +1,61 @@
 import { useState, useEffect, ChangeEvent } from "react";
 
-import logoImage from "../assets/logo.svg";
+import logoImage from "../../assets/logo.svg";
 import { TODO_LIST } from "./initial-state";
-import { ITodoTypes } from "./types";
+import { Item, ITodoTypes } from "./types";
 
 import "./index.css";
 
 function Todo() {
-  const [items, setItems] = useState(TODO_LIST);
+  const [taskList, setTaskList] = useState(TODO_LIST);
   const [searchInputValue, setSearchInputValue] = useState("");
   const [search, setSearch] = useState("");
 
-  const handleChange = (event: ChangeEvent<unknown>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchInputValue(event.target.value);
   };
 
-  const handleSearch = (event) => {
+  const handleSearch = (event: ChangeEvent<EventTarget>) => {
     event.preventDefault();
     setSearch(searchInputValue);
   };
 
-  const handleDeleteTask = (id: number) => {
-    const editedItems = [];
+  const handleDeleteTask = (id: string) => {
+    const editedItems: Item[] = [];
 
-    items.map((item) => {
+    taskList.map((item: Item) => {
       if (item.id !== id) {
         editedItems.push(item);
       }
-    })
+    });
 
-    setItems(editedItems);
+    setTaskList(editedItems);
   };
 
   const handleChangeTaskStatus = (id: string, status: ITodoTypes) => {
-    const reversedStatus = status === "pending" ? "pending" : "done";
-    const editedItems = [];
+    const reversedStatus = status === "pending" ? "done" : "pending";
+    const editedItems: Item[] = [];
 
-    for (let i = 0; i < items.length; i++) {
-      if (items[i].id === id) {
+    for (let i = 0; i < taskList.length; i++) {
+      if (taskList[i].id === id) {
         editedItems.push({
-          ...items[i],
+          ...taskList[i],
           status: reversedStatus,
         });
       } else {
-        editedItems.push(items[i]);
+        editedItems.push(taskList[i]);
       }
     }
 
-    setItems(editedItems);
+    setTaskList(editedItems);
   };
 
   useEffect(() => {
-    if (search || items)
-      setItems((currentItems) => [
-        ...currentItems,
+    if (search)
+      setTaskList(() => [
         ...TODO_LIST.filter((item) => item.title.includes(search)),
       ]);
-  }, [search, items]);
+  }, [search]);
 
   return (
     <main id="page" className="todo">
@@ -82,19 +81,19 @@ function Todo() {
             <input
               id="search"
               placeholder="busca por texto..."
-              value={searchValue}
+              value={search}
               onChange={handleChange}
             />
             <button type="submit">buscar</button>
           </form>
           <ul className="todo__list">
-            {items.length === 0 && (
+            {taskList.length === 0 && (
               <span>
                 <strong>Ops!!!</strong> Nenhum resultado foi encontrado
                 &#128533;
               </span>
             )}
-            {items.map((item, i) => {
+            {taskList.map((item, i) => {
               return (
                 <li>
                   <span>
@@ -117,7 +116,7 @@ function Todo() {
                       </div>
                     )}
                     <div className="todo__actions">
-                      <button onClick={() => handleDeleteTask(item.uuid)}>
+                      <button onClick={() => handleDeleteTask(item.id)}>
                         delete
                       </button>
                       <button
@@ -131,7 +130,7 @@ function Todo() {
                         </strong>
                       </button>
                     </div>
-                  <div>
+                  </div>
                 </li>
               );
             })}

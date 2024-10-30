@@ -1,17 +1,17 @@
 import { useState, ChangeEvent } from "react";
-import logoFullImage from "../../assets/logo-full.svg";
-import arrowRightImage from "../../assets/arrow-right.svg";
+import logoFullImage from "../../../assets/logo-full.svg";
+import arrowRightImage from "../../../assets/arrow-right.svg";
 import "./index.css";
 
 function Login() {
   const [cpf, setCpf] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleChangeCPF = (e: ChangeEvent<unknown>) => {
+  const handleChangeCPF = (e: ChangeEvent<HTMLInputElement>) => {
     setCpf(e.target.value);
   };
 
-  const handleChangePassword = (e: ChangeEvent<unknown>) => {
+  const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 

@@ -1,4 +1,6 @@
-export const TODO_LIST = [
+import { Item } from "./types";
+
+export const TODO_LIST: Item[] = [
   {
     id: "5ce31291-d06b-4940-9d14-0f41d116fe76",
     ref: "1",
@@ -80,7 +82,7 @@ export const TODO_LIST = [
     links: [
       {
         name: "endpoint de autenticação",
-        link: "http://localhost:3000/auth",
+        url: "http://localhost:3000/auth",
       },
     ],
   },
@@ -98,7 +100,7 @@ export const TODO_LIST = [
         <br />O contrato esta no <strong>README.md</strong> do projeto.
       </>
     ),
-    status: "pendin",
+    status: "pending",
     required: true,
     links: [
       {
@@ -107,7 +109,7 @@ export const TODO_LIST = [
       },
       {
         name: "endpoint de lista",
-        link: "http://localhost:3000/list",
+        url: "http://localhost:3000/list",
       },
     ],
   },
@@ -135,7 +137,7 @@ export const TODO_LIST = [
     links: [
       {
         name: "figma",
-        link: "https://www.figma.com/file/TXxt0VFxbzDoho4tmt9XPP/Teste_FrontWeb?type=design&node-id=5-3396&mode=dev",
+        url: "https://www.figma.com/file/TXxt0VFxbzDoho4tmt9XPP/Teste_FrontWeb?type=design&node-id=5-3396&mode=dev",
       },
     ],
   },
