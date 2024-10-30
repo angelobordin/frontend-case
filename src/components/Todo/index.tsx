@@ -97,7 +97,7 @@ function Todo() {
               return (
                 <li key={task.id}>
                   <span>
-                    {i}
+                    {++i}
                     {task.required ? "*" : ""}.
                   </span>
                   <div className="todo__content">
