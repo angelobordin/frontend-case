@@ -93,22 +93,22 @@ function Todo() {
                 &#128533;
               </span>
             )}
-            {taskList.map((item, i) => {
+            {taskList.map((task, i) => {
               return (
-                <li>
+                <li key={task.id}>
                   <span>
                     {i}
-                    {item.required ? "*" : ""}.
+                    {task.required ? "*" : ""}.
                   </span>
                   <div className="todo__content">
                     <h3>
-                      {item.title}
-                      <span data-type={item.status}>{item.status}</span>
+                      {task.title}
+                      <span data-type={task.status}>{task.status}</span>
                     </h3>
-                    <p>{item.description}</p>
-                    {item.links && item.links.length > 0 && (
+                    <p>{task.description}</p>
+                    {task.links && task.links.length > 0 && (
                       <div className="todo__links">
-                        {item.links.map((link) => (
+                        {task.links.map((link) => (
                           <a key={link.name} target="_blank" href={link.url}>
                             {link.name}
                           </a>
@@ -116,17 +116,17 @@ function Todo() {
                       </div>
                     )}
                     <div className="todo__actions">
-                      <button onClick={() => handleDeleteTask(item.id)}>
+                      <button onClick={() => handleDeleteTask(task.id)}>
                         delete
                       </button>
                       <button
                         onClick={() =>
-                          handleChangeTaskStatus(item.id, item.status)
+                          handleChangeTaskStatus(task.id, task.status)
                         }
                       >
                         change to{" "}
                         <strong>
-                          <u>{item.status === "done" ? "pending" : "done"}</u>
+                          <u>{task.status === "done" ? "pending" : "done"}</u>
                         </strong>
                       </button>
                     </div>
