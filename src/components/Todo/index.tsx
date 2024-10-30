@@ -51,10 +51,15 @@ function Todo() {
   };
 
   useEffect(() => {
-    if (search)
-      setTaskList(() => [
-        ...TODO_LIST.filter((item) => item.title.includes(search)),
-      ]);
+    if (search) {
+      setTaskList(
+        TODO_LIST.filter((item) =>
+          item.title.toUpperCase().includes(search.toUpperCase())
+        )
+      );
+    } else {
+      setTaskList(TODO_LIST);
+    }
   }, [search]);
 
   return (
@@ -76,16 +81,18 @@ function Todo() {
         <p className="disclaimer">
           Items obrigatórios marcados com arteristico (<strong>*</strong>)
         </p>
+
         <div className="todo__wrapper">
           <form className="todo__search" onSubmit={handleSearch}>
             <input
               id="search"
               placeholder="busca por texto..."
-              value={search}
+              value={searchInputValue}
               onChange={handleChange}
             />
             <button type="submit">buscar</button>
           </form>
+
           <ul className="todo__list">
             {taskList.length === 0 && (
               <span>
