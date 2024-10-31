@@ -1,10 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 const db = require("./db/transactions.json");
 const user = require("./db/user.json");
 const bodyParser = require("body-parser");
 
 const port = 3000;
 const app = express();
+app.use(cors());
 
 app.use(bodyParser.json());
 
