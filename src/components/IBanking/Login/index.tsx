@@ -1,9 +1,19 @@
 import { useState, ChangeEvent } from "react";
+
 import logoFullImage from "../../../assets/logo-full.svg";
 import arrowRightImage from "../../../assets/arrow-right.svg";
+import {
+  validateCpf,
+  validatePassword,
+} from "../../../Utils/validators/validators";
+import AuthService from "./service";
+
 import "./index.css";
 
+const authService = new AuthService();
+
 function Login() {
+  const [loading, setLoading] = useState(false);
   const [cpf, setCpf] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,11 +25,24 @@ function Login() {
     setPassword(e.target.value);
   };
 
-  const handleAuth = () => {
-    console.log({
-      cpf,
-      password,
-    });
+  const validateForm = () => {
+    return validateCpf(cpf) && validatePassword(password);
+  };
+
+  const handleAuth = async (event: ChangeEvent<EventTarget>) => {
+    event.preventDefault();
+    try {
+      setLoading(true);
+      const res = await authService.auth({ cpf, password });
+      console.log("response", res);
+      console.log({
+        cpf,
+        password,
+      });
+      setLoading(false);
+    } catch (error) {
+      console.log(`Algo deu errado: `, error);
+    }
   };
 
   return (
@@ -32,7 +55,7 @@ function Login() {
         placeholder="Digite sua senha"
         onChange={handleChangePassword}
       />
-      <button onClick={handleAuth}>
+      <button onClick={handleAuth} disabled={loading || !validateForm()}>
         Continuar
         <img src={arrowRightImage} />
       </button>
