@@ -1,5 +1,5 @@
-const validateCpf = (email: string) => {
-  if (!email || email == "") return false;
+const validateCpf = (cpf: string) => {
+  if (!cpf || cpf == "") return false;
   else return true;
 };
 
