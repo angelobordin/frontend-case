@@ -3,13 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite & npm run server",
+    "dev": "concurrently \"vite\" \"npm run server\"",
     "server": "nodemon api.js",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.7.7",
     "body-parser": "^1.20.2",
     "express": "^4.19.2",
     "react": "^18.2.0",
@@ -23,6 +24,7 @@
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^9.0.1",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
