@@ -1,4 +1,3 @@
-// ApiClient.ts
 import axios, { AxiosInstance } from "axios";
 import { API } from "../routes/routes";
 
@@ -19,13 +18,12 @@ class AxiosClient {
       AxiosClient.instance.interceptors.response.use(
         (response) => response,
         (error) => {
-          console.log("error", error);
           if (error.response && error.response.status === 401) {
             localStorage.removeItem("token");
 
             // não posso utilizar hooks fora de umm component React
             // this.navigate("/");
-            // window.location.href = "/";
+            window.location.href = "/";
           }
 
           return Promise.reject(error);
