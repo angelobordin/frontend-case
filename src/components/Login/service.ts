@@ -1,5 +1,5 @@
-import axios, { AxiosInstance } from "axios";
-import { API, ROUTE_LOGIN } from "../../Utils/routes/routes";
+import { ROUTE_LOGIN } from "../../Utils/routes/routes";
+import AxiosClient from "../../Utils/axios/axios-client";
 
 interface FormData {
   cpf: string;
@@ -7,19 +7,10 @@ interface FormData {
 }
 
 export default class AuthService {
-  private axios: AxiosInstance;
-
-  constructor() {
-    this.axios = axios.create({
-      baseURL: API,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  }
+  private axiosInstance = AxiosClient.getInstance();
 
   async auth(formData: FormData) {
-    const { data } = await this.axios.post(ROUTE_LOGIN, formData);
+    const { data } = await this.axiosInstance.post(ROUTE_LOGIN, formData);
 
     if (data) {
       localStorage.setItem("token", data.token);

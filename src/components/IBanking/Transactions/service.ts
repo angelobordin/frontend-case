@@ -1,5 +1,5 @@
-import axios, { AxiosInstance } from "axios";
-import { API, ROUTE_TRANSACTIONS } from "../../../Utils/routes/routes";
+import { ROUTE_TRANSACTIONS } from "../../../Utils/routes/routes";
+import AxiosClient from "../../../Utils/axios/axios-client";
 
 export interface TransactionListResponse {
   results: IDateTransactions[];
@@ -21,20 +21,11 @@ export interface IDateTransactions {
 }
 
 export default class TransactionService {
-  private axios: AxiosInstance;
-
-  constructor() {
-    this.axios = axios.create({
-      baseURL: API,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  }
+  private axiosInstance = AxiosClient.getInstance();
 
   async list(): Promise<TransactionListResponse> {
     const token = localStorage.getItem("token");
-    const { data } = await this.axios.get(ROUTE_TRANSACTIONS, {
+    const { data } = await this.axiosInstance.get(ROUTE_TRANSACTIONS, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
