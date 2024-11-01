@@ -17,7 +17,7 @@ function Transactions() {
       const res = await transactionService.list();
       setTransactions(res);
     } catch (error) {
-      window.alert(`Algo deu errado: ${error}`);
+      console.log(`Algo deu errado: ${error}`);
     } finally {
       setLoading(false);
     }

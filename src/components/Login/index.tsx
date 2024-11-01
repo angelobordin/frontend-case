@@ -39,7 +39,7 @@ function Login() {
       if (res) navigate("/ibanking");
       setLoading(false);
     } catch (error) {
-      window.alert(`Algo deu errado: ${error}`);
+      console.log(`Algo deu errado: ${error}`);
     }
   };
 
