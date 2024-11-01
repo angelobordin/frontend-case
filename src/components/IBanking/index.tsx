@@ -1,7 +1,12 @@
-import { Login } from "./Login";
+import AuthGuard from "../../Utils/auth/auth-guard";
+import Transactions from "./Transactions";
 
 function IBanking() {
-  return <Login />;
+  return (
+    <AuthGuard>
+      <Transactions />
+    </AuthGuard>
+  );
 }
 
 export { IBanking };

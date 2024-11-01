@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Todo from "./components/Todo";
 import { IBanking } from "./components/IBanking";
-import AuthGuard from "./Utils/auth/auth-guard";
+import { Login } from "./components/Login";
 
 function App() {
   return (
@@ -10,14 +10,8 @@ function App() {
       <Routes>
         <Route path="*" element={<Home />} />
         <Route path="/todo" element={<Todo />} />
-        <Route
-          path="/ibanking"
-          element={
-            <AuthGuard>
-              <IBanking />
-            </AuthGuard>
-          }
-        />
+        <Route path="/auth" element={<Login />} />
+        <Route path="/ibanking" element={<IBanking />} />
       </Routes>
     </Router>
   );
