@@ -1,11 +1,12 @@
 import { useState, ChangeEvent } from "react";
+import { useNavigate } from "react-router-dom";
 
-import logoFullImage from "../../../assets/logo-full.svg";
-import arrowRightImage from "../../../assets/arrow-right.svg";
+import logoFullImage from "../../assets/logo-full.svg";
+import arrowRightImage from "../../assets/arrow-right.svg";
 import {
   validateCpf,
   validatePassword,
-} from "../../../Utils/validators/validators";
+} from "../../Utils/validators/validators";
 import AuthService from "./service";
 
 import "./index.css";
@@ -16,6 +17,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const [cpf, setCpf] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleChangeCPF = (e: ChangeEvent<HTMLInputElement>) => {
     setCpf(e.target.value);
@@ -34,14 +36,10 @@ function Login() {
     try {
       setLoading(true);
       const res = await authService.auth({ cpf, password });
-      console.log("response", res);
-      console.log({
-        cpf,
-        password,
-      });
+      if (res) navigate("/ibanking");
       setLoading(false);
     } catch (error) {
-      console.log(`Algo deu errado: `, error);
+      window.alert(`Algo deu errado: ${error}`);
     }
   };
 
