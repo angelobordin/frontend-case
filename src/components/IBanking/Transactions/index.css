@@ -1,0 +1,18 @@
+.text-color-success {
+    color: var(--color-success);
+}
+
+.text-color-error {
+    color: var(--color-error);
+}
+
+.button-custom {
+    --bs-btn-bg: var(--color-lighter-gray);
+    --bs-btn-color: var(--color-gray);
+    
+    --bs-btn-border-radius: 30px;
+    --bs-btn-padding-x: 15px;
+
+    --bs-btn-active-bg: var(--color-gray);
+    --bs-btn-active-color: var(--color-white);
+}
