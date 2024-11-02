@@ -27,7 +27,7 @@ export default class TransactionService {
     const token = localStorage.getItem("token");
     const { data } = await this.axiosInstance.get(ROUTE_TRANSACTIONS, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        token,
       },
     });
 
