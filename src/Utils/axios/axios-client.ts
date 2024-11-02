@@ -15,6 +15,16 @@ class AxiosClient {
         },
       });
 
+      AxiosClient.instance.interceptors.request.use(
+        (request) => {
+          request.headers["token"] = localStorage.getItem("token");
+          return request;
+        },
+        (error) => {
+          return Promise.reject(error);
+        }
+      );
+
       AxiosClient.instance.interceptors.response.use(
         (response) => response,
         (error) => {

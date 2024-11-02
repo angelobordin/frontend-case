@@ -24,12 +24,7 @@ export default class TransactionService {
   private axiosInstance = AxiosClient.getInstance();
 
   async list(): Promise<TransactionListResponse> {
-    const token = localStorage.getItem("token");
-    const { data } = await this.axiosInstance.get(ROUTE_TRANSACTIONS, {
-      headers: {
-        token,
-      },
-    });
+    const { data } = await this.axiosInstance.get(ROUTE_TRANSACTIONS);
 
     return data;
   }
