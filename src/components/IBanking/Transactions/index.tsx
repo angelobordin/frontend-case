@@ -8,20 +8,47 @@ import "./index.css";
 const transactionService = new TransactionService();
 
 function Transactions() {
+  const [filter, setFilter] = useState("");
+  const [loading, setLoading] = useState(true);
+
   const [transactions, setTransactions] = useState<TransactionListResponse>({
     results: new Array<IDateTransactions>(),
     itemsTotal: 0,
   });
-  const [loading, setLoading] = useState(true);
   const getTransactionList = async () => {
     try {
       const res = await transactionService.list();
       setTransactions(res);
+      setFilteredTransactions(res);
     } catch (error) {
       console.log(`Algo deu errado: ${error}`);
     } finally {
       setLoading(false);
     }
+  };
+
+  const [filteredTransactions, setFilteredTransactions] =
+    useState<TransactionListResponse>({
+      results: new Array<IDateTransactions>(),
+      itemsTotal: 0,
+    });
+  const handleFilterTransactions = (newFilter: string) => {
+    if (newFilter == filter) newFilter = "";
+
+    setFilter(newFilter);
+    const newList = transactions.results
+      .map((transaction) => ({
+        ...transaction,
+        items: transaction.items.filter((item) =>
+          newFilter ? item.entry === newFilter : true
+        ),
+      }))
+      .filter((transaction) => transaction.items.length > 0);
+
+    setFilteredTransactions({
+      results: newList,
+      itemsTotal: transactions.itemsTotal,
+    });
   };
 
   const formatDate = (dateStr: string) => {
@@ -61,35 +88,39 @@ function Transactions() {
 
   return (
     <div className="container mt-5">
-      <ul
-        className="nav nav-pills mb-3 grid gap-4"
-        id="transactionTabs"
-        role="tablist"
-      >
-        <li className="nav-item">
-          <button type="button" className="btn button-custom">
-            Débito
-          </button>
-        </li>
-        <li className="nav-item">
-          <button type="button" className="btn button-custom">
-            Crédito
-          </button>
-        </li>
-      </ul>
+      <div className="nav nav-pills mb-3 grid gap-3">
+        <button
+          type="button"
+          className={`btn button-custom ${
+            filter === "DEBIT" ? "active" : "inactive"
+          }`}
+          onClick={() => handleFilterTransactions("DEBIT")}
+        >
+          Débito
+        </button>
+        <button
+          type="button"
+          className={`btn button-custom ${
+            filter === "CREDIT" ? "active" : "inactive"
+          }`}
+          onClick={() => handleFilterTransactions("CREDIT")}
+        >
+          Crédito
+        </button>
+      </div>
 
       <div className="tab-content" id="transactionTabsContent">
-        {transactions.results.map((day, index) => (
-          <div key={index}>
+        {filteredTransactions.results.map((day, indexD) => (
+          <div key={indexD}>
             <div className="transaction-date">
               <h6>{formatDateWithMonthName(day.date)}</h6>
-              {/* <p className="text-color-end">
-                    <strong>Saldo do dia {transaction.balance}</strong>
-                  </p> */}
+              {/* <span className="text-gray">
+                Saldo do dia <strong>{formatAmount(balance[indexD])}</strong>
+              </span> */}
             </div>
             <div className="border border-opacity-50 rounded-4 mb-3 py-3 grid row-gap-5">
-              {day.items.map((transaction, index) => (
-                <div className="row m-2" key={index}>
+              {day.items.map((transaction, indexT) => (
+                <div className="row m-2" key={indexT}>
                   <div className="col-7 d-flex flex-row">
                     <div className="row w-100">
                       <span className="col-1">
