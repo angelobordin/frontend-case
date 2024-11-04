@@ -7,7 +7,7 @@ import {
   ITransaction,
   ITransactionListResponse,
   IDateTransactions,
-} from "../interfaces";
+} from "../utils/interfaces";
 import Transaction from "../Transaction";
 import { filterByEntry } from "../../../../Utils/functions/filter-by-entry";
 import TransactionService from "../service";
@@ -76,34 +76,28 @@ function TransactionList({ filter }: { filter: string }) {
     getTransactionList();
   }, []);
 
-  const renderDayTransactionDetails = (day: IDateTransactions) => (
-    <div className="transaction-date">
-      <h6>{formatDateWithMonthName(day.date)}</h6>
-      <span className="text-gray">
-        Saldo do dia{" "}
-        <strong>{formatAmount(calculateBalance(day.items))}</strong>
-      </span>
-    </div>
-  );
-
-  const renderDayTransaction = (day: IDateTransactions, index: number) => (
-    <div key={index}>
-      {renderDayTransactionDetails(day)}
-      <div className="border border-opacity-50 rounded-4 mb-3 py-3 grid row-gap-5">
-        {day.items.map((transaction) => (
-          <Transaction key={transaction.id} transaction={transaction} />
-        ))}
-      </div>
-    </div>
-  );
-
-  if (loading || transactionList.length === 0) {
+  if (loading || groupedTransactions.length === 0) {
     return <p>Carregando transações...</p>;
   }
 
   return (
     <div className="tab-content" id="transactionTabsContent">
-      {groupedTransactions.map(renderDayTransaction)}
+      {groupedTransactions.map((day: IDateTransactions, indexD: number) => (
+        <div key={indexD}>
+          <div className="transaction-date">
+            <h6>{formatDateWithMonthName(day.date)}</h6>
+            <span className="text-gray">
+              Saldo do dia{" "}
+              <strong>{formatAmount(calculateBalance(day.items))}</strong>
+            </span>
+          </div>
+          <div className="border border-opacity-50 rounded-4 mb-3 py-3 grid row-gap-5">
+            {day.items.map((transaction) => (
+              <Transaction key={transaction.id} transaction={transaction} />
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

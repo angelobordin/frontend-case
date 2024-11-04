@@ -1,7 +1,7 @@
-import { ROUTE_LOGIN } from "../../Utils/routes/routes";
-import AxiosClient from "../../Utils/axios/axios-client";
+import { ROUTE_LOGIN } from "../routes/routes";
+import AxiosClient from "../axios/axios-client";
 
-interface FormData {
+interface LoginFormData {
   cpf: string;
   password: string;
 }
@@ -9,7 +9,7 @@ interface FormData {
 export default class AuthService {
   private axiosInstance = AxiosClient.getInstance();
 
-  async auth(formData: FormData) {
+  async auth(formData: LoginFormData) {
     const { data } = await this.axiosInstance.post(ROUTE_LOGIN, formData);
 
     if (data) {
@@ -23,5 +23,9 @@ export default class AuthService {
 
   isAuthenticated() {
     return localStorage.getItem("token") != undefined ? true : false;
+  }
+
+  logout() {
+    return localStorage.removeItem("token");
   }
 }

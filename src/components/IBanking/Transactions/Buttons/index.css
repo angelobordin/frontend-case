@@ -1,7 +1,19 @@
+.buttons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 /**
     Adicionei "!important" pois o estilo parou de ser aplicado, tentei resolver de diversas formas mais infelizmente não quis "perder" mais tempo nesta questão.
     É uma medida totalmente paliativa e apenas para entregar com o estilo 100% ao do modelo do figma.
 */
+.btn {
+    --bs-btn-border-radius: 30px !important;
+    --bs-btn-padding-x: 15px !important;
+}
+
 .button-custom {
     --bs-btn-bg: var(--color-lighter-gray) !important;
     --bs-btn-color: var(--color-gray) !important;
@@ -11,4 +23,9 @@
 
     --bs-btn-active-bg: var(--color-gray) !important;
     --bs-btn-active-color: var(--color-white) !important;
+}
+
+.button-back {
+    --bs-btn-bg: var(--color-main) !important;
+    --bs-btn-color: var(--color-white) !important;
 }

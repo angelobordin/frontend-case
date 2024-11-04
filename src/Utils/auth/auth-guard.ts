@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import AuthService from "../../components/Login/service";
+import AuthService from "./service";
 
 import { ReactNode } from "react";
 

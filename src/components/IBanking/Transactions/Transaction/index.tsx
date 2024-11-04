@@ -2,16 +2,15 @@ import {
   formatAmount,
   formatDate,
 } from "../../../../Utils/functions/formaters";
-import { ITransaction } from "../interfaces";
+import { ITransaction } from "../utils/interfaces";
 
 interface IProps {
   transaction: ITransaction;
-  key: string;
 }
 
-function Transaction({ transaction, key }: IProps) {
+function Transaction({ transaction }: IProps) {
   return (
-    <div className="row m-2" key={key}>
+    <div className="row m-2" key={transaction.id}>
       <div className="col-7 d-flex flex-row">
         <div className="row w-100">
           <span className="col-1">

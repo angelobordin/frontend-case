@@ -7,7 +7,7 @@ import {
   validateCpf,
   validatePassword,
 } from "../../Utils/validators/validators";
-import AuthService from "./service";
+import AuthService from "../../Utils/auth/service";
 
 import "./index.css";
 
