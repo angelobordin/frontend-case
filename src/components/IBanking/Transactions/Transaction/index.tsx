@@ -6,12 +6,12 @@ import { ITransaction } from "../interfaces";
 
 interface IProps {
   transaction: ITransaction;
-  index: number;
+  key: string;
 }
 
-function Transaction({ transaction, index }: IProps) {
+function Transaction({ transaction, key }: IProps) {
   return (
-    <div className="row m-2" key={index}>
+    <div className="row m-2" key={key}>
       <div className="col-7 d-flex flex-row">
         <div className="row w-100">
           <span className="col-1">
