@@ -10,7 +10,7 @@ import {
 } from "../utils/interfaces";
 import Transaction from "../Transaction";
 import { filterByEntry } from "../../../../Utils/functions/filter-by-entry";
-import TransactionService from "../service";
+import TransactionService from "../service/service";
 import { ENTRY } from "../../../../Utils/types/entry";
 
 const transactionService = new TransactionService();

@@ -5,6 +5,7 @@ import { TODO_LIST } from "./initial-state";
 import { Item, ITodoTypes } from "./types";
 
 import "./index.css";
+import Task from "./Task";
 
 function Todo() {
   const [taskList, setTaskList] = useState(TODO_LIST);
@@ -93,47 +94,15 @@ function Todo() {
                 &#128533;
               </span>
             )}
-            {taskList.map((task, i) => {
-              return (
-                <li key={task.id}>
-                  <span>
-                    {++i}
-                    {task.required ? "*" : ""}.
-                  </span>
-                  <div className="todo__content">
-                    <h3>
-                      {task.title}
-                      <span data-type={task.status}>{task.status}</span>
-                    </h3>
-                    <p>{task.description}</p>
-                    {task.links && task.links.length > 0 && (
-                      <div className="todo__links">
-                        {task.links.map((link) => (
-                          <a key={link.name} target="_blank" href={link.url}>
-                            {link.name}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                    <div className="todo__actions">
-                      <button onClick={() => handleDeleteTask(task.id)}>
-                        delete
-                      </button>
-                      <button
-                        onClick={() =>
-                          handleChangeTaskStatus(task.id, task.status)
-                        }
-                      >
-                        change to{" "}
-                        <strong>
-                          <u>{task.status === "done" ? "pending" : "done"}</u>
-                        </strong>
-                      </button>
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
+            {taskList.map((task, index) => (
+              <Task
+                key={task.id}
+                task={task}
+                index={index}
+                handleChangeTaskStatus={handleChangeTaskStatus}
+                handleDeleteTask={handleDeleteTask}
+              />
+            ))}
           </ul>
         </div>
       </div>
