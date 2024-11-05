@@ -170,4 +170,112 @@ export const TODO_LIST: Item[] = [
     status: "pending",
     required: false,
   },
+  {
+    id: "c9f4b23d-6d0a-4f8f-9336-d94d0b183f63",
+    ref: "1",
+    title: "Roteamento das Páginas",
+    description: (
+      <>Implementar ReactRouterDom, Router e Routes para rotear o sistema</>
+    ),
+    status: "pending",
+    required: true,
+  },
+  {
+    id: "ef6a9e39-75b3-4b8b-a5bb-dc3b7d8c6f52",
+    ref: "1",
+    title: "Ajustes UseEffect na Tela Todo-List",
+    description: (
+      <>
+        Corrigir useEffect que preenche todo list baseado no filtro de pesquisa
+        (Está concatenando as duas listas desnecessariamente)
+      </>
+    ),
+    status: "pending",
+    required: true,
+  },
+  {
+    id: "0d5a7f6a-85a9-4f15-982b-6cbb4e5837bc",
+    ref: "1",
+    title: "Ajuste ao atualizar status das Tasks",
+    description: (
+      <>
+        Corrigir alteração do status, está com a lógica invertida e permanecendo
+        o mesmo status.
+      </>
+    ),
+    status: "pending",
+    required: true,
+  },
+  {
+    id: "2f3b38cf-e8a2-4bfa-8f8b-0244d65e62e5",
+    ref: "1",
+    title: "Ajuste de tipo na TODO_LIST",
+    description: (
+      <>
+        Implementar interface no array TODO_LIST, corrigir ID duplicado de
+        registro e corrigir nome e tipagem de propriedades inválidas
+      </>
+    ),
+    status: "pending",
+    required: true,
+  },
+  {
+    id: "673f9387-7b1a-4f84-b178-18456f6d17b6",
+    ref: "1",
+    title: "Servidor Backend não está subindo",
+    description: (
+      <>
+        Ajustar rotina "npm run dev" para executar o servidor juntamente com o
+        frontend, instalar o concurrently para executar 2 rotinas ao mesmo tempo
+      </>
+    ),
+    status: "pending",
+    required: true,
+  },
+  {
+    id: "4734ad5d-2f26-40a7-9001-7e5b71c6718e",
+    ref: "1",
+    title: "Estilização Global",
+    description: (
+      <>
+        Estilos de botôes do main page esta sobreescrenvdo dos demais do sistema
+      </>
+    ),
+    status: "pending",
+    required: true,
+  },
+  {
+    id: "9f93b31c-b8b5-4e89-8e7d-e6b8b9651fa3",
+    ref: "1",
+    title: "Implementação Token JWT",
+    description: (
+      <>
+        Implementar JWT decode e mostrar nome do usuário na tela de transactions
+      </>
+    ),
+    status: "pending",
+    required: true,
+  },
+  {
+    id: "bce7e3ad-d038-4f6f-85af-7df1d21dfce8",
+    ref: "1",
+    title: "Componentização de partes do sistema",
+    description: (
+      <>
+        Componentizar partes do sistema com possbilidade de reutilização em
+        outros locais, e para simplificar leitura e manutenção do código
+        futuramente.
+      </>
+    ),
+    status: "pending",
+    required: true,
+  },
+  {
+    id: "e5bca7b9-bc94-48c9-b5d3-132ec9796a32",
+    ref: "1",
+    title: "Exbir mensagens de ações realizadas pelo usuário",
+    description: <>Implementar React-Toastify no projeto</>,
+    status: "pending",
+    required: true,
+  },
 ];
