@@ -1,4 +1,4 @@
-import { ITransactionListResponse } from "../../components/IBanking/Transactions/utils/interfaces";
+import { ITransactionListResponse } from "../../Pages/IBanking/Transactions/utils/interfaces";
 
 export function filterByEntry(
   dataOrigin: ITransactionListResponse,

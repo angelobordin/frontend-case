@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import Todo from "./components/Todo";
-import { IBanking } from "./components/IBanking";
-import { Login } from "./components/Login";
+import Home from "./Pages/Home";
+import Todo from "./Pages/Todo";
+import { IBanking } from "./Pages/IBanking";
+import { Login } from "./Pages/Login";
 
 function App() {
   return (
