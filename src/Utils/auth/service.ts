@@ -1,5 +1,6 @@
 import { ROUTE_LOGIN } from "../routes/routes";
 import AxiosClient from "../axios/axios-client";
+import { jwtDecode } from "jwt-decode";
 
 interface LoginFormData {
   cpf: string;
@@ -13,6 +14,12 @@ export default class AuthService {
     const { data } = await this.axiosInstance.post(ROUTE_LOGIN, formData);
 
     if (data) {
+      const decodedToken = jwtDecode<{
+        name: string;
+        token: string;
+      }>(data.token);
+
+      localStorage.setItem("name", decodedToken.name);
       localStorage.setItem("token", data.token);
 
       return true;
@@ -26,6 +33,8 @@ export default class AuthService {
   }
 
   logout() {
-    return localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    localStorage.removeItem("token");
+    return;
   }
 }

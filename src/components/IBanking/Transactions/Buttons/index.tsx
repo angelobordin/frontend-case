@@ -49,14 +49,17 @@ function Buttons({ handleFilter, filter }: IButtonProps) {
           Crédito
         </button>
       </div>
-      <div className="">
+      <div>
+        <span>
+          Você esta logado como: <strong>{localStorage.getItem("name")}</strong>
+        </span>
         <button
           type="button"
-          className={`btn button-custom`}
+          className={`btn button-custom mx-2`}
           onClick={() => handleLogout()}
         >
           <i className="bi bi-box-arrow-left mx-2"></i>
-          Logout
+          Desconectar
         </button>
       </div>
     </div>

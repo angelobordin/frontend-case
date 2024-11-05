@@ -6,8 +6,7 @@
 }
 
 /**
-    Adicionei "!important" pois o estilo parou de ser aplicado, tentei resolver de diversas formas mais infelizmente não quis "perder" mais tempo nesta questão.
-    É uma medida totalmente paliativa e apenas para entregar com o estilo 100% ao do modelo do figma.
+    Adicionei "!important" é uma medida paliativa para sobrescrever o estilo do page main
 */
 .btn {
     --bs-btn-border-radius: 30px !important;
