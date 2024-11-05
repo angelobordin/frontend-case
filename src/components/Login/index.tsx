@@ -33,14 +33,10 @@ function Login() {
 
   const handleAuth = async (event: ChangeEvent<EventTarget>) => {
     event.preventDefault();
-    try {
-      setLoading(true);
-      const res = await authService.auth({ cpf, password });
-      if (res) navigate("/ibanking");
-      setLoading(false);
-    } catch (error) {
-      console.log(`Algo deu errado: ${error}`);
-    }
+    setLoading(true);
+    const res = await authService.auth({ cpf, password });
+    if (res) navigate("/ibanking");
+    setLoading(false);
   };
 
   return (
