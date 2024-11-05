@@ -2,6 +2,7 @@ import "./index.css";
 import { IButtonProps } from "../utils/interfaces";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../../../../Utils/auth/service";
+import { toast } from "react-toastify";
 
 const authService = new AuthService();
 
@@ -14,6 +15,7 @@ function Buttons({ handleFilter, filter }: IButtonProps) {
 
   const handleLogout = () => {
     authService.logout();
+    toast.info("Usuário desconectado com sucesso!");
     navigateToHome();
   };
 

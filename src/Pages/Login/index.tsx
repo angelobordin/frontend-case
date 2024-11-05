@@ -10,6 +10,7 @@ import {
 import AuthService from "../../Utils/auth/service";
 
 import "./index.css";
+import { toast } from "react-toastify";
 
 const authService = new AuthService();
 
@@ -35,7 +36,12 @@ function Login() {
     event.preventDefault();
     setLoading(true);
     const res = await authService.auth({ cpf, password });
-    if (res) navigate("/ibanking");
+    if (res) {
+      toast.success("Usuário conectado com sucesso!");
+      navigate("/ibanking");
+    } else {
+      toast.error("Usuário ou senha incorretos!");
+    }
     setLoading(false);
   };
 

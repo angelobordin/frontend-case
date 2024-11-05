@@ -3,6 +3,7 @@ import { useState, useEffect, ChangeEvent } from "react";
 import logoImage from "../../assets/logo.svg";
 import { TODO_LIST } from "./initial-state";
 import { Item, ITodoTypes } from "./types";
+import { toast } from "react-toastify";
 
 import "./index.css";
 import Task from "./Task";
@@ -24,6 +25,7 @@ function Todo() {
   const handleDeleteTask = (id: string) => {
     const newTaskList = taskList.filter((t) => t.id !== id);
     setTaskList(newTaskList);
+    toast.success("Task deletada com sucesso!");
   };
 
   const handleChangeTaskStatus = (id: string, status: ITodoTypes) => {
@@ -42,6 +44,9 @@ function Todo() {
     }
 
     setTaskList(editedItems);
+    toast.info(
+      `Status alterado para ${status === "pending" ? "Concluído" : "Pendente"}!`
+    );
   };
 
   useEffect(() => {
@@ -75,6 +80,12 @@ function Todo() {
         <p className="disclaimer">
           Items obrigatórios marcados com arteristico (<strong>*</strong>)
         </p>
+        <div className="flex justify-center">
+          <button type="button" className="btn button-back">
+            <i className="bi bi-house-door-fill mx-2"></i>
+            Home
+          </button>
+        </div>
 
         <div className="todo__wrapper">
           <form className="todo__search" onSubmit={handleSearch}>
